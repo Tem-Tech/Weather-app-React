@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
-export default function () {
+export default function (props) {
+  let [temp, setTemp] = useState(props.temperature);
+
+  function fahrenheit(event) {
+    event.preventDefault();
+
+    setTemp(`${Math.round((props.minTemp * 9) / 5 + 32)}`);
+    setTemp(`${Math.round((props.maxTemp * 9) / 5 + 32)}`);
+  }
+  function celcius(event) {
+    event.preventDefault();
+    setTemp(props.minTemp);
+  }
   return (
     <div>
       <strong className="description" id="description">
@@ -8,12 +20,21 @@ export default function () {
       </strong>{" "}
       <div className="weather-data">
         <br />
-        <span id="temperature-high">8</span>
+        <span id="temperature-high">{props.minTemp}</span>
         <span>°| </span>
         <span id="temperature-low">
-          <strong>10</strong>
+          <strong>{props.maxTemp}</strong>
         </span>
         <span>°</span>
+      </div>
+      <div>
+        <a href="/" onClick={celcius}>
+          °C /
+        </a>
+        <a href="/" onClick={fahrenheit}>
+          {" "}
+          °F
+        </a>
       </div>
       <p>
         <ul className="stats">
