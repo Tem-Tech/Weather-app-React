@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import "./style.css";
 export default function (props) {
-  let [temp, setTemp] = useState(props.temperature);
+  let [minTemp, setminTemp] = useState(props.minTemp);
+  let [maxTemp, setmaxTemp] = useState(props.maxTemp);
 
   function fahrenheit(event) {
     event.preventDefault();
 
-    setTemp(`${Math.round((props.minTemp * 9) / 5 + 32)}`);
-    setTemp(`${Math.round((props.maxTemp * 9) / 5 + 32)}`);
+    setminTemp(`${Math.round((props.minTemp * 9) / 5 + 32)}`);
+    setmaxTemp(`${Math.round((props.maxTemp * 9) / 5 + 32)}`);
   }
   function celcius(event) {
     event.preventDefault();
-    setTemp(props.minTemp);
+    setminTemp(props.minTemp);
+    setmaxTemp(props.maxTemp);
   }
   return (
     <div>
@@ -20,10 +22,10 @@ export default function (props) {
       </strong>{" "}
       <div className="weather-data">
         <br />
-        <span id="temperature-high">{props.minTemp}</span>
+        <span id="temperature-high">{minTemp}</span>
         <span>°| </span>
         <span id="temperature-low">
-          <strong>{props.maxTemp}</strong>
+          <strong>{maxTemp}</strong>
         </span>
         <span>°</span>
       </div>
