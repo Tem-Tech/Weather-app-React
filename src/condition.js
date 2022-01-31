@@ -30,7 +30,7 @@ export default function (props) {
         <span>°</span>
       </div>
       <div>
-        <a href="/" onClick={celcius}>
+        <a href="/" className="active" onClick={celcius}>
           °C /
         </a>
         <a href="/" onClick={fahrenheit}>
@@ -41,15 +41,18 @@ export default function (props) {
       <p>
         <ul className="stats">
           <li>
-            Feels like: <span id="feel">6°</span>
-            <span>°</span>{" "}
+            <img
+              src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
+              alt={description}
+            />
           </li>
-          <li>
-            Humidity: <span id="humidity"> 23</span>%
-          </li>
-          <li>
-            windspeed: <span id="windspeed"> 0.5</span>km/hr{" "}
-          </li>
+          <li>Description: {description}</li>
+
+          <li>Feels like: {Math.round(temperature)}°C</li>
+
+          <li>Humidity: {humidity}%</li>
+
+          <li>Windsped: {Math.round(wind)}km/hr</li>
         </ul>
       </p>
     </div>
