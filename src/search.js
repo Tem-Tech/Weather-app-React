@@ -1,73 +1,43 @@
 import React, { useState } from "react";
 import { Dot } from "react-animated-dots";
+import Conditions from "./condition";
+import Forecast from "./forecast";
 import axios from "axios";
 
-export default function searchForm() {
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-  const [temperature, setTemperature] = useState("");
-  const [minTemp, setMinTemp] = useState("");
-  const [maxTemp, setMaxTemp] = useState("");
-  const [description, setDescription] = useState("");
-  const [wind, setWind] = useState("");
-  const [humidity, setHumidity] = useState("");
-  const [icon, setIcon] = useState("");
-  const [report, displayReport] = useState(false);
+export default function searchForm(props) {
+  let [report, setReport] = useState({ ready: false });
+  let [city, setCity] = useState("props.default");
 
   function weatherReport(response) {
-    displayReport(true);
-    setTemperature(response.data.main.temp);
-    setDescription(response.data.weather[0].description);
-    setWind(response.data.wind.speed);
-    setHumidity(response.data.main.humidity);
-    setIcon(response.data.weather[0].icon);
-    setCountry(response.data.sys.country);
-    setMinTemp(response.data.main.temp_min);
-    setMaxTemp(response.data.main.temp_max);
+    setReport({
+      ready: true,
+      coordinates: response.data.coord,
+      temperature: response.data.main.temp,
+      description: response.data.weather[0].description,
+      wind: response.data.wind.speed,
+      humidity: response.data.main.humidity,
+      icon: response.data.weather[0].icon,
+      country: response.data.sys.country,
+      minTemp: response.data.main.temp_min,
+      maxTemp: response.data.main.temp_max
+    });
   }
   function handleSubmit(event) {
     event.preventDefault();
-    let apiKey = "2f77a721f146c97e77d99956a2de9fe0";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(weatherReport);
+    search();
   }
   function cityChange(event) {
     setCity(event.target.value);
   }
-  if (report) {
+  function search() {
+    let apiKey = "2f77a721f146c97e77d99956a2de9fe0";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(weatherReport);
+  }
+  if (report.ready) {
     return (
       <div>
-        {report && (
-          <div>
-            <h1>
-              {city}, {country}
-            </h1>
-            <ul className="stats">
-              <li>
-                <img
-                  src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
-                  alt={description}
-                />
-              </li>
-              <div className="weather-data">
-                <span id="temperature-high">{Math.round(minTemp)}</span>
-                <span>°| </span>
-                <span id="temperature-low">
-                  <strong>{Math.round(maxTemp)}</strong>
-                </span>
-                <span>°</span>
-              </div>
-
-              <li>Description: {description}</li>
-
-              <li>Feels like: {Math.round(temperature)}°C</li>
-
-              <li>Humidity: {humidity}%</li>
-
-              <li>Windsped: {Math.round(wind)}km/hr</li>
-            </ul>
-          </div>
-        )}
+        <Conditions data={report} />
         <form id="city-search" onSubmit={handleSubmit}>
           <input
             type="search"
@@ -79,6 +49,7 @@ export default function searchForm() {
           <input type="submit" value="🔍" className="form-btn" />
           <input type="submit" value="📌" className="form-btn" />
         </form>
+        <Forecast coordinates={report.coordinates} />
       </div>
     );
   } else {

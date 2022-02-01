@@ -17,44 +17,42 @@ export default function (props) {
   }
   return (
     <div>
-      <strong className="description" id="description">
-        Sunny, clear sky
-      </strong>{" "}
-      <div className="weather-data">
-        <br />
-        <span id="temperature-high">{minTemp}</span>
-        <span>°| </span>
-        <span id="temperature-low">
-          <strong>{maxTemp}</strong>
-        </span>
-        <span>°</span>
-      </div>
-      <div>
-        <a href="/" className="active" onClick={celcius}>
-          °C /
-        </a>
-        <a href="/" onClick={fahrenheit}>
-          {" "}
-          °F
-        </a>
-      </div>
-      <p>
-        <ul className="stats">
-          <li>
-            <img
-              src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
-              alt={description}
-            />
-          </li>
-          <li>Description: {description}</li>
+      <h1>
+        {props.data.city}, {props.data.country}
+      </h1>
+      <ul className="stats">
+        <li>
+          <img
+            src={`https://openweathermap.org/img/wn/${props.data.icon}@2x.png`}
+            alt={props.data.description}
+          />
+        </li>
+        <div className="weather-data">
+          <span id="temperature-high">{Math.round(minTemp)}</span>
+          <span>°| </span>
+          <span id="temperature-low">
+            <strong>{Math.round(maxTemp)}</strong>
+          </span>
+          <span>°</span>
+        </div>
+        <div>
+          <a href="/" className="active" onClick={celcius}>
+            °C /
+          </a>
+          <a href="/" onClick={fahrenheit}>
+            {" "}
+            °F
+          </a>
+        </div>
 
-          <li>Feels like: {Math.round(temperature)}°C</li>
+        <li>Description: {props.data.description}</li>
 
-          <li>Humidity: {humidity}%</li>
+        <li>Feels like: {Math.round(props.data.temperature)}°C</li>
 
-          <li>Windsped: {Math.round(wind)}km/hr</li>
-        </ul>
-      </p>
+        <li>Humidity: {props.data.humidity}%</li>
+
+        <li>Windsped: {Math.round(props.data.wind)}km/hr</li>
+      </ul>
     </div>
   );
 }

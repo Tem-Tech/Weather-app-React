@@ -8,10 +8,9 @@ export default function App() {
       <div className="container">
         <br />
         <Heading />
-        <Search />
+        <Search default="London" />
         <br />
-        <hr size="" />
-        <h3>This week...</h3>
+
         <div>
           <ForecastRow />
         </div>
