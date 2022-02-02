@@ -1,10 +1,4 @@
-import React from "react";
-<weatherIcon num={props.data.weather[0].icon} size={36} />;
-const [country, setCountry] = useState("");
-const [temperature, setTemperature] = useState("");
-const [minTemp, setMinTemp] = useState("");
-const [maxTemp, setMaxTemp] = useState("");
-const [description, setDescription] = useState("");
-const [wind, setWind] = useState("");
-const [humidity, setHumidity] = useState("");
-const [icon, setIcon] = useState("");
+
+
+
+    

@@ -10,13 +10,13 @@ export default function () {
           <ForecastDay />
         </div>
         <div className="col-2">
-          <ForecastDay day="Mon" min="10" max="17" index="50" />
+          <ForecastDay  />
         </div>
         <div className="col-2">
-          <ForecastDay day="Tue" min="10" max="17" index="01" />
+          <ForecastDay  />
         </div>
         <div className="col-2">
-          <ForecastDay day="Wed" min="10" max="17" index="09" />
+          <ForecastDay />
         </div>
         <div classsName="col-2">
           <ForecastDay />

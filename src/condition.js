@@ -9,15 +9,13 @@ export default function (props) {
 
     setminTemp(`${Math.round((props.minTemp * 9) / 5 + 32)}`);
     setmaxTemp(`${Math.round((props.maxTemp * 9) / 5 + 32)}`);
-    fahrenheit.classList.add("active");
-    celcius.classList.remove("active");
+ 
   }
   function celcius(event) {
     event.preventDefault();
     setminTemp(props.minTemp);
     setmaxTemp(props.maxTemp);
-    fahrenheit.classList.remove("active");
-    celcius.classList.add("active");
+    
   }
   return (
     <div>
@@ -32,10 +30,10 @@ export default function (props) {
           />
         </li>
         <div className="weather-data">
-          <span id="temperature-high">{Math.round(minTemp)}</span>
+          <span id="temperature-high">{Math.round(props.data.minTemp)}</span>
           <span>°| </span>
           <span id="temperature-low">
-            <strong>{Math.round(maxTemp)}</strong>
+            <strong>{Math.round(props.data.maxTemp)}</strong>
           </span>
           <span>°</span>
         </div>
