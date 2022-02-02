@@ -4,9 +4,9 @@ import Conditions from "./condition";
 import Forecast from "./forecast";
 import axios from "axios";
 
-export default function searchForm(props) {
+export default function SearchForm(props) {
   let [report, setReport] = useState({ ready: false });
-  let [city, setCity] = useState("props.default");
+  let [city, setCity] = useState("");
 
   function weatherReport(response) {
     setReport({
@@ -17,6 +17,7 @@ export default function searchForm(props) {
       wind: response.data.wind.speed,
       humidity: response.data.main.humidity,
       icon: response.data.weather[0].icon,
+      city: response.data.name,
       country: response.data.sys.country,
       minTemp: response.data.main.temp_min,
       maxTemp: response.data.main.temp_max
@@ -42,7 +43,7 @@ export default function searchForm(props) {
           <input
             type="search"
             placeholder="Search City Here..."
-            class="form-control"
+            className="form-control"
             id="search-input"
             onChange={cityChange}
           />
@@ -80,7 +81,7 @@ export default function searchForm(props) {
           <input
             type="search"
             placeholder="Search City Here..."
-            class="form-control"
+            className="form-control"
             id="search-input"
             onChange={cityChange}
           />

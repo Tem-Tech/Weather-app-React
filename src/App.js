@@ -1,5 +1,5 @@
 import "./style.css";
-import Search from "./search";
+import SearchForm from "./search";
 import ForecastRow from "./predictions";
 import Heading from "./heading";
 export default function App() {
@@ -8,7 +8,7 @@ export default function App() {
       <div className="container">
         <br />
         <Heading />
-        <Search default="London" />
+        <SearchForm />
         <br />
 
         <div>

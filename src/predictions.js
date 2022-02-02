@@ -7,7 +7,7 @@ export default function () {
       <h3>This week...</h3>
       <div className="row">
         <div className="col-2">
-          <ForecastDay day="Sun" min="10" max="17" index="02" />
+          <ForecastDay />
         </div>
         <div className="col-2">
           <ForecastDay day="Mon" min="10" max="17" index="50" />
@@ -19,7 +19,7 @@ export default function () {
           <ForecastDay day="Wed" min="10" max="17" index="09" />
         </div>
         <div classsName="col-2">
-          <ForecastDay day="Thu" min="10" max="17" index="02" />
+          <ForecastDay />
         </div>
       </div>
     </div>

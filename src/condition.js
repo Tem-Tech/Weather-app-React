@@ -9,11 +9,15 @@ export default function (props) {
 
     setminTemp(`${Math.round((props.minTemp * 9) / 5 + 32)}`);
     setmaxTemp(`${Math.round((props.maxTemp * 9) / 5 + 32)}`);
+    fahrenheit.classList.add("active");
+    celcius.classList.remove("active");
   }
   function celcius(event) {
     event.preventDefault();
     setminTemp(props.minTemp);
     setmaxTemp(props.maxTemp);
+    fahrenheit.classList.remove("active");
+    celcius.classList.add("active");
   }
   return (
     <div>
@@ -36,10 +40,10 @@ export default function (props) {
           <span>°</span>
         </div>
         <div>
-          <a href="/" className="active" onClick={celcius}>
+          <a href="/" id="celcius" className="active" onClick={celcius}>
             °C /
           </a>
-          <a href="/" onClick={fahrenheit}>
+          <a href="/" id="fahrenheit" onClick={fahrenheit}>
             {" "}
             °F
           </a>

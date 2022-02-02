@@ -2,15 +2,15 @@ import React from "react";
 
 export default function forecastDay(props) {
   function maxTemp() {
-    let temperature = Math.round();
+    let temperature = Math.round(props.data.main.temp_max);
     return `${temperature}°`;
   }
   function minTemp() {
-    let temperature = Math.round();
+    let temperature = Math.round(props.data.main.temp_min);
     return `${temperature}°`;
   }
   function day() {
-    let date = new Date(props.dt * 100 - props.timezone * 1000);
+    let date = new Date(props.data.dt * 1000 - props.data.timezone * 1000);
     let day = date.getDay();
     let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     return days[day];
@@ -26,7 +26,7 @@ export default function forecastDay(props) {
       <div className="forecast-temperatures">
         <span className="minTemperature">{props.min}º</span>|
         <span>
-          <strong>{props.max}º</strong>
+          <strong>{props.data.max_temp}º</strong>
         </span>
       </div>
 
