@@ -1,44 +1,32 @@
 import React from "react";
+import Icons from "./icons.js"
 
 export default function ForecastDay(props) {
+  console.log(props.data);
   function maxTemp() {
-    let htemperature = Math.round();
-    return `${htemperature}°`;
+    let temperature = Math.round(props.data.temp.max);
+    return `${temperature}°`;
   }
   function minTemp() {
-    let ltemperature = Math.round();
-    return `${ltemperature}°`;
+    let temperature = Math.round(props.data.temp.min);
+    return `${temperature}°`;
   }
   function day() {
-    let date = new Date();
-let day = date.getDay();
+    let date = new Date(props.data.dt * 1000);
+    let day = date.getDay();
     let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     return days[day];    
   }
   return (
-    <div className="col-2">
-      <div className="forecast-date">{day()}</div>
-      <img
-        src={`http://openweathermap.org/img/wn/${props.key}d@2x.png`}
-        height="35px"
-        alt="icon"
-      />
-      <div className="forecast-temperatures">
-        <span className="minTemperature">${Math.round(props.daily)}º</span>|
-        <span>
-          <strong>{Math.round()}º</strong>
-        </span>
-      </div>
-
+    <div>
+      <div className="forecast-day">{day()}</div>
+      <Icons code={props.data.weather[0].icon}/>
       <div>
-        <div className="WeatherForecast-day">{day()}</div>
-        <div>
           <span>{minTemp()}º</span>|
           <span>
             <strong>{maxTemp()}º</strong>
           </span>
         </div>
       </div>
-    </div>
   );
 }

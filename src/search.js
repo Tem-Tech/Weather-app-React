@@ -9,7 +9,6 @@ export default function SearchForm(props) {
   let [city, setCity] = useState("");
 
   function weatherReport(response) {
-    console.log(response)
     setReport({
       ready: true,
       coordinates: response.data.coord,
@@ -21,7 +20,8 @@ export default function SearchForm(props) {
       city: response.data.name,
       country: response.data.sys.country,
       minTemp: response.data.main.temp_min,
-      maxTemp: response.data.main.temp_max
+      maxTemp: response.data.main.temp_max,
+      date: new Date(response.data.dt * 1000),
     });
   }
   function handleSubmit(event) {

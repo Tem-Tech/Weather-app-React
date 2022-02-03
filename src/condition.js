@@ -4,19 +4,7 @@ export default function (props) {
   let [minTemp, setminTemp] = useState(props.minTemp);
   let [maxTemp, setmaxTemp] = useState(props.maxTemp);
 
-  function fahrenheit(event) {
-    event.preventDefault();
-
-    setminTemp(`${Math.round((props.minTemp * 9) / 5 + 32)}`);
-    setmaxTemp(`${Math.round((props.maxTemp * 9) / 5 + 32)}`);
  
-  }
-  function celcius(event) {
-    event.preventDefault();
-    setminTemp(props.minTemp);
-    setmaxTemp(props.maxTemp);
-    
-  }
   return (
     <div>
       <h1>
@@ -37,16 +25,6 @@ export default function (props) {
           </span>
           <span>°</span>
         </div>
-        <div>
-          <a href="/" id="celcius" className="active" onClick={celcius}>
-            °C /
-          </a>
-          <a href="/" id="fahrenheit" onClick={fahrenheit}>
-            {" "}
-            °F
-          </a>
-        </div>
-
         <li>Description: {props.data.description}</li>
 
         <li>Feels like: {Math.round(props.data.temperature)}°C</li>

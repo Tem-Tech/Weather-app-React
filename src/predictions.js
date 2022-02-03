@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 import ForecastDay from "./forecastDay";
-export default function () {
+export default function Predictions () {
   return (
     <div>
       <h3>This week...</h3>
@@ -18,7 +18,7 @@ export default function () {
         <div className="col-2">
           <ForecastDay />
         </div>
-        <div classsName="col-2">
+        <div className="col-2">
           <ForecastDay />
         </div>
       </div>
